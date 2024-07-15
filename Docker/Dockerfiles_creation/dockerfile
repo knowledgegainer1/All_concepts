@@ -3,4 +3,5 @@ RUN yum install nginx -y
 LABEL  x="sada" \
         y="shiva"
 EXPOSE 80
+COPY /tmp/dockerfile/sample.txt /tmp/
 CMD ["nginx","-g","daemon off;"]    
