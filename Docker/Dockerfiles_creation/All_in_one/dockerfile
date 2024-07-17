@@ -10,7 +10,7 @@ LABEL url="https://www.fb.com/cource/netedatss"
 EXPOSE 80 443
 ENV x=10 \
     y=20
-COPY logs.txt /home/
+#COPY /logs.txt /home/
 ADD https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file /home/details.html
 
 WORKDIR /home
