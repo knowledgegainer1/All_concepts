@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: storageclasss
+data:
+  x: 10
+  y: 20
+  version: 1.2.2
+  path: "/home/centos/mysql/tables/view"
