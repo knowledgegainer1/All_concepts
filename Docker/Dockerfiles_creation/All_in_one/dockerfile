@@ -11,8 +11,9 @@ ENV x=10 \
     y=20
 COPY logs.txt /home/
 ADD https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file /home/details.html
-ENTRYPOINT ["nginx", "-g"]
+
 WORKDIR /home
 USER ${createuser}
+ENTRYPOINT ["nginx", "-g"]
 CMD ["daemon off;"]
 
