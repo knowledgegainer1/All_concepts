@@ -1,6 +1,18 @@
-FROM almalinux:latest
+ARG version
+FROM almalinux:${version}
 RUN yum install nginx -y 
+ARG createuser
+RUN adduser ${createuser}
 RUN echo "insyalled" >> logs.txt
 LABEL version="1.2.32.3"
 LABEL url="https://www.fb.com/cource/netedatss"
-CMD ["nginx","-g","daemon off;"]
+EXPOSE 80 443
+ENV x=10 \
+    y=20
+COPY logs.txt /home/
+ADD https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file /home/details.html
+ENTRYPOINT ["nginx", "-g"]
+WORKDIR /home
+USER ${createuser}
+CMD ["daemon off;"]
+
