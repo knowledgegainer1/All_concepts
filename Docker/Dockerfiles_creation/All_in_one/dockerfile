@@ -1,5 +1,5 @@
 ARG version
-FROM nginx:${version}
+FROM almalinux:${version:9}
 RUN yum install nginx -y 
 ARG createuser
 RUN adduser ${createuser}
