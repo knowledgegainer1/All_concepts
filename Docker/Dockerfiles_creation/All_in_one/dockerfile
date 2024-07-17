@@ -1,1 +1,2 @@
 FROM tomcat:jre21-temurin-jammy
+RUN echo "hello this is file" >> file.txt
