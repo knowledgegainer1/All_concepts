@@ -1,2 +1,6 @@
-FROM tomcat:jre21-temurin-jammy
-RUN echo "hello this is file" >> file.txt
+FROM almalinux:latest
+RUN yum install nginx -y 
+RUN echo "insyalled" >> logs.txt
+LABEL version="1.2.32.3"
+LABEL url="https://www.fb.com/cource/netedatss"
+CMD ["nginx","-g","daemon off;"]
