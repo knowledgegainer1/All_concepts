@@ -1,5 +1,6 @@
 ARG version
-FROM tomcat:${version}
+FROM nginx:${version}
+#stable-perl
 RUN yum install nginx -y 
 ARG createuser
 RUN adduser ${createuser}
