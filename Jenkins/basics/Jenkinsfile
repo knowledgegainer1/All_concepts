@@ -4,6 +4,9 @@ pipeline {
             label 'agent1' // Corrected syntax: 'label' instead of '='
         }
     }
+    environment{
+        demo = "this is demo"
+    }
     stages {
         stage('Build') { 
             steps {
@@ -18,6 +21,7 @@ pipeline {
         stage('Deploy') { 
             steps {
                echo "thiis is "
+               ecfo "$env.demo"
             }
         }
     }
