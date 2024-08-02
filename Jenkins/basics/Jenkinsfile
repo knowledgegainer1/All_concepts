@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy') { 
             steps {
                echo "thiis is "
-               ecfo "$env.demo"
+               echo "$env.demo"
             }
         }
     }
