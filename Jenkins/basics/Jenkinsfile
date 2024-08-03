@@ -4,20 +4,18 @@ pipeline {
             label 'agent1'
         }
     }
-    environment{
-        hello='this is env vaiable'
+    environment {
+        hello = 'this is env vaiable'
     }
     stages {
         stage('1st stage') {
             steps {
-                environment{
-                    SSH_CREDS = credentials('ssh-auth')
-                }
+                
                 sh """
                     sudo yum install nginx -y  >> /tmp/leg.txt
                     env| grep hello
                     ${env.hello}
-                    echo " ${SSH_CREDS}"
+                   
                 """
             }
         }
