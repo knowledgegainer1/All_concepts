@@ -12,8 +12,8 @@ pipeline {
             steps {
                 sh """
                     sudo yum install nginx -y  >> /tmp/leg.txt
-                    env| grep hello
-                    ${env.hello}
+                    env | grep hello
+                    echo "${env.hello}"
                 """
             }
         }
