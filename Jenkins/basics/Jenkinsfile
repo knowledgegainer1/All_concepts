@@ -4,9 +4,19 @@ pipeline {
             label 'agent1'
         }
     }
+    parameters{
+        string{ name: 'sada', defaultValue: ' yes', description: 'this is parameter'}
+        text{ name: 'lonttext', defaultValue: 'aefknwrvljovwjvjworj', description: 'text vlaue is parameter'}
+        booleanParam{ name: 'true or fale', defaultValue: false, description: 'this is bool'}
+        choice{ name: 'chhos', choices: ['One', 'Two', 'Three'], description: 'this is cjoefwed'}
+        password{ name: 'sasdwdda', defaultValue: 'sefwefewf2ef', description: 'this is pass'}
+    }
     environment {
         hello = 'this is env vaiable'
     }
+    options {
+        timestamps()
+        disableConcurrentBuilds() }
     stages {
         stage('1st stage') {
             steps {
