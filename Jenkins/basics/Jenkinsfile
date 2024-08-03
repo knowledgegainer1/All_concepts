@@ -1,38 +1,29 @@
 pipeline {
     agent {
         node {
-            label 'agent1' // Corrected syntax: 'label' instead of '='
+            label 'agent1'
         }
     }
     environment{
-        demo = "this is demo"
-    }
-    options {
-        timeout(time: 1, unit: 'SECONDS') 
+        hello='this is env vaiable'
     }
     stages {
-        stage('Build') { 
+        stage('1st stage') {
             steps {
+                environment{
+                    SSH_CREDS = credentials('ssh-auth')
+                }
                 sh """
-
-                echo "thiis is "
-                env
+                    sudo yum install nginx -y  >> /tmp/leg.txt
+                    env| grep hello
+                    ${env.hello}
+                    echo " ${SSH_CREDS}"
                 """
             }
         }
-        stage('Test') { 
-            steps {
-                echo "thiis is "
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                sh """
-               echo "thiis is "
-               echo "$env.demo"
-               sleep 10
-               """
-            }
-        }
+    }
+    post {
+        fixed { echo 's run failed or was unstable' }
+        always { echo ' this is executed the always Pipe' }
     }
 }
