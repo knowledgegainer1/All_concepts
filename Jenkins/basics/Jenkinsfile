@@ -10,12 +10,10 @@ pipeline {
     stages {
         stage('1st stage') {
             steps {
-                
                 sh """
                     sudo yum install nginx -y  >> /tmp/leg.txt
                     env| grep hello
                     ${env.hello}
-                   
                 """
             }
         }
