@@ -42,5 +42,8 @@ pipeline {
     post {
         fixed { echo 's run failed or was unstable' }
         always { echo ' this is executed the always Pipe' }
+        success{
+            echo "this is created sfter success"
+        }
     }
 }
