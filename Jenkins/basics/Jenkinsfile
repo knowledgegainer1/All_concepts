@@ -7,7 +7,7 @@ pipeline {
     parameters{
         string( name: 'sada', defaultValue: ' yes', description: 'this is parameter')
         text( name: 'lonttext', defaultValue: 'aefknwrvljovwjvjworj', description: 'text vlaue is parameter')
-        booleanParam(name: 'true or fale', defaultValue: false, description: 'this is bool')
+        booleanParam(name: 'trueorfalse', defaultValue: false, description: 'this is bool')
         choice(name: 'chhos', choices: ['One', 'Two', 'Three'], description: 'this is cjoefwed')
         password(name: 'sasdwdda', defaultValue: 'sefwefewf2ef', description: 'this is pass')
     }
@@ -24,6 +24,17 @@ pipeline {
                     sudo yum install nginx -y  >> /tmp/leg.txt
                     env | grep hello
                     echo "${env.hello}"
+                """
+            }
+        }
+        stage('2st stage') {
+            steps {
+                sh """
+                    echo "${params.sada}"
+                    echo "${params.lonttext}"
+                    echo "${params.trueorfalse}"
+                    echo "${params.chhos}"
+                    echo "${params.sasdwdda}"
                 """
             }
         }
