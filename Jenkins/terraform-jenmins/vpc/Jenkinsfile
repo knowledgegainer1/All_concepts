@@ -12,7 +12,7 @@ pipeline {
         stage('Initialize stage') {
             steps {
                 sh '''
-                cd 01-vpc
+                cd vpc
                 terraform init -reconfigure
             '''
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('plan') {
             steps {
                 sh '''
-                cd 01-vpc
+                cd vpc
                 terraform plan
             '''
             }
@@ -33,7 +33,7 @@ pipeline {
             }
             steps {
                 sh '''
-                cd 01-vpc
+                cd vpc
                 terraform apply -auto-approve
             '''
             }
