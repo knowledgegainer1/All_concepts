@@ -9,6 +9,9 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')
         ansiColor('xterm')
     }
+    parameters {
+        choice(name: 'action', choice:['apply', 'destroy'], description: 'this is action')
+    }
     stages {
         stage('Initialize stage') {
             steps {
@@ -20,14 +23,19 @@ pipeline {
         }
         stage('plan') {
             steps {
-                sh """
+                sh '''
                 echo "hello"
                 cd Jenkins/terraform-jenmins/vpc
                 terraform plan
-            """
+            '''
             }
         }
         stage('apply') {
+            when {
+                expression {
+                    params.action == 'apply'
+                }
+            }
             input {
                 message 'Should we continue?'
                 ok 'Yes, we should.'
@@ -37,6 +45,24 @@ pipeline {
                 sh '''
                 cd Jenkins/terraform-jenmins/vpc
                 terraform apply -auto-approve
+            '''
+            }
+        }
+        stage('destroy') {
+            when {
+                expression {
+                    params.action == 'destroy'
+                }
+            }
+            input {
+                message 'Should we continue?'
+                ok 'Yes, we should.'
+                submitter 'SSRG'
+            }
+            steps {
+                sh '''
+                cd Jenkins/terraform-jenmins/vpc
+                terraform destroy -auto-approve
             '''
             }
         }
