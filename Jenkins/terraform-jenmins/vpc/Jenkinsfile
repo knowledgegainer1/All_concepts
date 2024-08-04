@@ -12,7 +12,7 @@ pipeline {
         stage('Initialize stage') {
             steps {
                 sh """
-                cd terraform-jenmins/vpc
+                cd Jenkins/terraform-jenmins/vpc
                 terraform init -reconfigure
             """
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('plan') {
             steps {
                 sh '''
-                cd terraform-jenmins/vpc
+                cd Jenkins/terraform-jenmins/vpc
                 terraform plan
             '''
             }
@@ -33,7 +33,7 @@ pipeline {
             }
             steps {
                 sh '''
-                cd terraform-jenmins/vpc
+                cd Jenkins/terraform-jenmins/vpc
                 terraform apply -auto-approve
             '''
             }
