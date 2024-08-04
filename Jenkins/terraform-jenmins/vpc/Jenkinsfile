@@ -1,0 +1,42 @@
+pipeline {
+    agent {
+        node {
+            label 'agent1'
+        }
+    }
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 30, unit: 'MINUTES')
+    }
+    stages {
+        stage('Initialize stage') {
+            steps {
+                sh '''
+                cd 01-vpc
+                terraform init -reconfigure
+            '''
+            }
+        }
+        stage('plan') {
+            steps {
+                sh '''
+                cd 01-vpc
+                terraform plan
+            '''
+            }
+        }
+        stage('apply') {
+            input {
+                message 'Should we continue?'
+                ok 'Yes, we should.'
+                submitter 'SSRG'
+            }
+            steps {
+                sh '''
+                cd 01-vpc
+                terraform apply -auto-approve
+            '''
+            }
+        }
+    }
+}
