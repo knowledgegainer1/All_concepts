@@ -11,10 +11,10 @@ pipeline {
     stages {
         stage('Initialize stage') {
             steps {
-                sh '''
+                sh """
                 cd terraform-jenmins/vpc
                 terraform init -reconfigure
-            '''
+            """
             }
         }
         stage('plan') {
