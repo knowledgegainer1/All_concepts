@@ -11,18 +11,19 @@ pipeline {
     stages {
         stage('Initialize stage') {
             steps {
-                sh """
+                sh '''
                 cd Jenkins/terraform-jenmins/vpc
                 terraform init -reconfigure
-            """
+            '''
             }
         }
         stage('plan') {
             steps {
-                sh '''
+                sh """
+                echo "hello"
                 cd Jenkins/terraform-jenmins/vpc
                 terraform plan
-            '''
+            """
             }
         }
         stage('apply') {
